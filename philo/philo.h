@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:29:51 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/03 02:00:07 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:33:29 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,30 @@
 # define EAT		"is eating"
 # define IS_DEAD	"died"	
 
+typedef struct s_data	t_data;
+
 typedef struct s_philo
 {
 	int				nb;
 	int				nb_philo;
 	int				nb_meals;
 	int				meals_in_stomach;
-	char			state;
 	long long		last_meal;
 	long long		start_time;
 	long long		t_to_die;
 	long long		t_to_eat;
 	long long		t_to_sleep;
+	t_data			*data;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*meal_lock;
-	pthread_mutex_t	*state_lock;
 	pthread_mutex_t	*print_lock;
 	pthread_t		thread;
 }		t_philo;
 
 typedef struct s_data
 {
+	int				is_ded;
 	int				nb_meals;
 	int				error;
 	int				nb_philo;
@@ -58,6 +60,7 @@ typedef struct s_data
 	long long		t_to_die;
 	long long		t_to_eat;
 	long long		t_to_sleep;
+	pthread_mutex_t	*ded_lock;
 	pthread_mutex_t	*print_lock;
 	pthread_t		main_thread;
 	t_philo			**philo;
@@ -76,7 +79,8 @@ void		msg(char	*msg, t_philo *p);
 void		alone(t_philo *p);
 int			is_he_ded(t_data *d);
 int			is_he_full(t_data *d);
-void		all_must_die(t_data *d);
+int			full_utils(t_data *d);
+void		all_must_die(t_data *d, int i);
 
 // -> parsing.c
 

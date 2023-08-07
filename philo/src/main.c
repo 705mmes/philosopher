@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 10:50:32 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/05 14:36:06 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:03:17 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	free_all(t_data *d)
 	int i;
 
 	i = 0;
+	pthread_mutex_destroy(d->ded_lock);
 	pthread_mutex_destroy(d->print_lock);
 	while (i < d->nb_philo)
 	{
 		pthread_mutex_destroy(d->philo[i]->l_fork);
-		pthread_mutex_destroy(d->philo[i]->state_lock);
 		pthread_mutex_destroy(d->philo[i]->meal_lock);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 17:11:37 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/05 14:31:09 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:02:55 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,14 @@ t_philo	*create_philo(int i, t_data *data)
 	philo->nb_philo = data->nb_philo;
 	philo->nb_meals = data->nb_meals;
 	philo->meals_in_stomach = 0;
-	philo->state = 'w';
 	philo->start_time = data->start_time;
 	philo->t_to_die = data->t_to_die;
 	philo->t_to_eat = data->t_to_eat;
 	philo->t_to_sleep = data->t_to_sleep;
 	philo->last_meal = data->start_time;
+	philo->data = data;
 	philo->meal_lock = malloc(sizeof(pthread_mutex_t));
 	pthread_mutex_init(philo->meal_lock, NULL);
-	philo->state_lock = malloc(sizeof(pthread_mutex_t));
-	pthread_mutex_init(philo->state_lock, NULL);
 	philo->l_fork = malloc(sizeof(pthread_mutex_t));
 	pthread_mutex_init(philo->l_fork, NULL);
 	philo->print_lock = data->print_lock;
@@ -67,6 +65,7 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->t_to_die = ft_atoi(argv[2]);
 	data->t_to_eat = ft_atoi(argv[3]);
 	data->t_to_sleep = ft_atoi(argv[4]);
+	data->is_ded = 0;
 	if (argc == 6)
 		data->nb_meals = ft_atoi(argv[5]);
 	else
@@ -74,6 +73,8 @@ int	init_data(t_data *data, int argc, char **argv)
 	if (data->nb_philo <= 0 || data->t_to_die <= 0
 		|| data->t_to_eat <= 0 || data->t_to_sleep <= 0)
 		return (1);
+	data->ded_lock = malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(data->ded_lock, NULL);
 	data->print_lock = malloc(sizeof(pthread_mutex_t));
 	pthread_mutex_init(data->print_lock, NULL);
 	data->philo = malloc(sizeof(t_philo *) * data->nb_philo);

@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:30:29 by smunio            #+#    #+#             */
-/*   Updated: 2023/08/05 14:18:17 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:59:53 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	drop(t_philo *p)
 void	eat_me(t_philo *p)
 {
 	take(p);
-	pthread_mutex_lock(p->state_lock);
-	p->state = 'E';
-	pthread_mutex_unlock(p->state_lock);
 	pthread_mutex_lock(p->meal_lock);
 	p->meals_in_stomach++;
 	p->last_meal = get_time();

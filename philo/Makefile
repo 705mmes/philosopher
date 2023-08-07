@@ -6,7 +6,7 @@
 #    By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/27 10:56:40 by sammeuss          #+#    #+#              #
-#    Updated: 2023/08/05 14:31:59 by sammeuss         ###   ########.fr        #
+#    Updated: 2023/08/07 15:06:12 by sammeuss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRC = 	main \
 		whatdoido \
 		
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -pthread -g3
+CFLAGS = -Wall -Werror -Wextra -fsanitize=thread -pthread -g3
 
 DIR_SRCS    = src/
 DIR_OBJS    = objs/
