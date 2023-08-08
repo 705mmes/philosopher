@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 11:11:11 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/07 16:16:35 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:35:59 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	im_the_boss(void	*data)
 	t_data		*d;
 
 	d = (t_data *)data;
-	ft_usleep(10);
+	ft_usleep(1);
 	while (1)
 	{
 		if (is_he_ded(d) == 1)
@@ -48,9 +48,9 @@ void	run(t_data *d)
 	i = -1;
 	pthread_create(&(d)->main_thread, NULL,
 		(void *)im_the_boss, (void *)d);
+	pthread_join(d->main_thread, NULL);
 	while (++i < d->nb_philo)
 		pthread_join(d->philo[i]->thread, NULL);
-	pthread_join(d->main_thread, NULL);
 }
 
 void	*routine(void *philo)

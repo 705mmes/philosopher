@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 10:50:32 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/07 15:03:17 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:03:54 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,13 @@ void	free_all(t_data *d)
 	{
 		pthread_mutex_destroy(d->philo[i]->l_fork);
 		pthread_mutex_destroy(d->philo[i]->meal_lock);
+		free(d->philo[i]->l_fork);
+		free(d->philo[i]->meal_lock);
+		free(d->philo[i]);
 		i++;
 	}
+	free(d->ded_lock);
+	free(d->print_lock);
 	free(d->philo);
 }
 
@@ -45,6 +50,7 @@ int	main(int argc, char **argv)
 		return (1);
 	run(&data);
 	free_all(&data);
+	system("leaks philo");
 	return (0);
 }
  

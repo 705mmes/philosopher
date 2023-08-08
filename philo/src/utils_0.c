@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 10:36:09 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/07 14:30:00 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:46:31 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ void	msg(char	*msg, t_philo *p)
 	long long	time;
 
 	pthread_mutex_lock(p->data->ded_lock);
+	pthread_mutex_lock(p->print_lock);
 	if (p->data->is_ded != 1)
 	{
 		pthread_mutex_unlock(p->data->ded_lock);
-		pthread_mutex_lock(p->print_lock);
 		time = get_time() - p->start_time;
 		printf("%llu %d %s\n", time, p->nb, msg);
-		pthread_mutex_unlock(p->print_lock);
 	}
 	else
 		pthread_mutex_unlock(p->data->ded_lock);
+	pthread_mutex_unlock(p->print_lock);
 }

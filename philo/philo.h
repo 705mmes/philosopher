@@ -6,7 +6,7 @@
 /*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:29:51 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/07 16:33:29 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/07 22:29:50 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		alone(t_philo *p);
 int			is_he_ded(t_data *d);
 int			is_he_full(t_data *d);
 int			full_utils(t_data *d);
-void		all_must_die(t_data *d, int i);
+void		all_must_die(t_data *d);
 
 // -> parsing.c
 
