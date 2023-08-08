@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_0.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 10:36:09 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/08 12:46:31 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:31:05 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	ft_is_digit(char c)
 	return (c >= '0' && c <= '9');
 }
 
-int	ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
-	int	r;
-	int	sign;
+	long	r;
+	long	sign;
 
 	r = 0;
 	sign = 1;

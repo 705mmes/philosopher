@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:29:51 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/07 22:29:50 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:37:38 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_data
 // -> utils_0.c
 
 int			ft_is_digit(char c);
-int			ft_atoi(char *str);
+long			ft_atoi(char *str);
 void		ft_usleep(int time);
 long long	get_time(void);
 void		msg(char	*msg, t_philo *p);
@@ -105,6 +105,7 @@ void		im_the_boss(void	*philo);
 
 // -> data_init.c
 
+int			check_data(t_data	*data);
 void		init_philo(t_data *data);
 int			init_data(t_data	*data, int argc, char	**argv);
 t_philo		*create_philo(int i, t_data *data);
