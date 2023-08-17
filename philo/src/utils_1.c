@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:14:01 by smunio            #+#    #+#             */
-/*   Updated: 2023/08/08 12:47:55 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:21:56 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	alone(t_philo *p)
 	pthread_mutex_lock(p->print_lock);
 	time = get_time() - p->start_time;
 	printf("%llu 1 has taken a fork\n", time);
-	ft_usleep(p->t_to_die);
+	ft_usleep(p->t_to_die, p->data);
 	time = get_time() - p->start_time;
 	printf("%llu 1 died\n", time);
 	exit(EXIT_SUCCESS);
@@ -89,6 +89,7 @@ int	is_he_full(t_data *d)
 		pthread_mutex_lock(d->philo[i]->meal_lock);
 		if (how_many_full == d->nb_philo)
 		{
+			all_must_die(d);
 			pthread_mutex_unlock(d->philo[i]->meal_lock);
 			return (1);
 		}

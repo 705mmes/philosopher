@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   whatdoido.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:30:29 by smunio            #+#    #+#             */
-/*   Updated: 2023/08/07 15:59:53 by sammeuss         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:23:19 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	drop(t_philo *p)
 	pthread_mutex_unlock(p->r_fork);
 	pthread_mutex_unlock(p->l_fork);
 	msg(SLEEP, p);
-	ft_usleep(p->t_to_sleep);
+	ft_usleep(p->t_to_sleep, p->data);
 	msg(THINK, p);
 }
 
@@ -37,6 +37,6 @@ void	eat_me(t_philo *p)
 	p->last_meal = get_time();
 	pthread_mutex_unlock(p->meal_lock);
 	msg(EAT, p);
-	ft_usleep(p->t_to_eat);
+	ft_usleep(p->t_to_eat, p->data);
 	drop(p);
 }

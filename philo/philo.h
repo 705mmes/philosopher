@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:29:51 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/08 16:36:50 by smunio           ###   ########.fr       */
+/*   Updated: 2023/08/17 17:21:38 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_data
 
 int			ft_is_digit(char c);
 long		ft_atoi(char *str);
-void		ft_usleep(int time);
+void		ft_usleep(int time, t_data *d);
 long long	get_time(void);
 void		msg(char	*msg, t_philo *p);
 

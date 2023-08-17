@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 10:36:09 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/08 15:31:05 by smunio           ###   ########.fr       */
+/*   Updated: 2023/08/17 17:27:58 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,21 @@ long	ft_atoi(char *str)
 	return (r * sign);
 }
 
-void	ft_usleep(int time)
+void	ft_usleep(int time, t_data *d)
 {
 	long long	i;
 	long long	target_time;
 
 	i = get_time();
 	target_time = i + time;
-	while (get_time() < target_time)
+	while (get_time() < target_time && d->is_ded != 1)
+	{
+		pthread_mutex_lock(d->ded_lock);
+		if (d->is_ded == 1)
+			return ;
+		pthread_mutex_unlock(d->ded_lock);
 		usleep(100);
+	}
 }
 
 long long	get_time(void)

@@ -6,7 +6,7 @@
 /*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 11:11:11 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/08 15:41:17 by smunio           ###   ########.fr       */
+/*   Updated: 2023/08/17 17:24:47 by smunio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	im_the_boss(void	*data)
 	t_data		*d;
 
 	d = (t_data *)data;
-	ft_usleep(1);
+	ft_usleep(1, d);
 	while (1)
 	{
 		if (is_he_ded(d) == 1)
@@ -59,7 +59,7 @@ void	*routine(void *philo)
 
 	p = (t_philo *)philo;
 	if (p->nb % 2 == 0)
-		ft_usleep(10);
+		ft_usleep(10, p->data);
 	while (1)
 	{
 		if (p->nb_philo == 1)
@@ -69,7 +69,7 @@ void	*routine(void *philo)
 		{
 			pthread_mutex_lock(p->data->ded_lock);
 			pthread_mutex_lock(p->meal_lock);
-			if (p->data->is_ded == 1 || (p->meals_in_stomach == p->nb_meals))
+			if (p->data->is_ded == 1)
 			{
 				pthread_mutex_unlock(p->data->ded_lock);
 				pthread_mutex_unlock(p->meal_lock);
