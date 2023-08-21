@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   runnin.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 11:11:11 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/17 17:24:47 by smunio           ###   ########.fr       */
+/*   Updated: 2023/08/21 14:10:25 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,19 @@ void	*routine(void *philo)
 	while (1)
 	{
 		if (p->nb_philo == 1)
+		{
 			alone(p);
+			break ;
+		}
 		eat_me(p);
 		if (p->nb_philo > 1)
 		{
 			pthread_mutex_lock(p->data->ded_lock);
-			pthread_mutex_lock(p->meal_lock);
 			if (p->data->is_ded == 1)
 			{
 				pthread_mutex_unlock(p->data->ded_lock);
-				pthread_mutex_unlock(p->meal_lock);
 				break ;
 			}
-			pthread_mutex_unlock(p->meal_lock);
 			pthread_mutex_unlock(p->data->ded_lock);
 		}
 	}

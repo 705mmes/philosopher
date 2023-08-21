@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_0.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 10:36:09 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/17 17:27:58 by smunio           ###   ########.fr       */
+/*   Updated: 2023/08/21 14:08:13 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,14 @@ void	ft_usleep(int time, t_data *d)
 
 	i = get_time();
 	target_time = i + time;
-	while (get_time() < target_time && d->is_ded != 1)
+	while (get_time() < target_time)
 	{
 		pthread_mutex_lock(d->ded_lock);
 		if (d->is_ded == 1)
+		{
+			pthread_mutex_unlock(d->ded_lock);
 			return ;
+		}
 		pthread_mutex_unlock(d->ded_lock);
 		usleep(100);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:14:01 by smunio            #+#    #+#             */
-/*   Updated: 2023/08/17 17:21:56 by smunio           ###   ########.fr       */
+/*   Updated: 2023/08/21 14:12:25 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ void	alone(t_philo *p)
 	time = get_time() - p->start_time;
 	printf("%llu 1 has taken a fork\n", time);
 	ft_usleep(p->t_to_die, p->data);
-	time = get_time() - p->start_time;
-	printf("%llu 1 died\n", time);
-	exit(EXIT_SUCCESS);
+	pthread_mutex_unlock(p->print_lock);
 }
 
 void	all_must_die(t_data *d)

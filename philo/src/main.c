@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smunio <smunio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sammeuss <sammeuss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 10:50:32 by sammeuss          #+#    #+#             */
-/*   Updated: 2023/08/08 16:44:22 by smunio           ###   ########.fr       */
+/*   Updated: 2023/08/21 14:13:33 by sammeuss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ int	main(int argc, char **argv)
 	if (check_args(argv))
 		return (printf("Error\nWrong args\n"));
 	r = init_data(&data, argc, argv);
-	if (r == 2)
+	if (r == 0)
+		init_philo(&data);
+	else if (r == 2)
 		data.philo[0] = create_philo(0, &data);
 	else if (r == 1)
 		return (printf("Error\nSomething's wrong\n"));
-	init_philo(&data);
 	if (data.error == 1)
 		return (1);
 	run(&data);
